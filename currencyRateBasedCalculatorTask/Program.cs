@@ -97,15 +97,17 @@ namespace currencyRateBasedCalculatorTask
                         Console.Write("Enter amount in AZN: ");
                         string userInput = Console.ReadLine();
                         decimal moneyAmountInAzn;
-                        
-                    
+
+
 
                         if (decimal.TryParse(userInput, out moneyAmountInAzn))
                         {
+                            currencyCodeRepeat:
+                            Console.WriteLine();
                             Console.Write("Enter currency code: ");
                             string code = Console.ReadLine();
                             int idxCurrencyCode = 0;
-                            bool found = true;
+                            bool found = false;
 
                             while (idxCurrencyCode < currencyCode.Length)
                             {
@@ -122,12 +124,11 @@ namespace currencyRateBasedCalculatorTask
                             if (!found)
                             {
                                 Console.WriteLine("According currency rate could not be found.");
+                                goto currencyCodeRepeat;
+                                
                             }
-                        }
-                        else
-                            Console.WriteLine("Please enter valid amount.");
 
-                    repeat:
+                        repeat:
                         Console.WriteLine();
                         Console.WriteLine("----------------------------------------------------");
                         Console.WriteLine("Do you want to request new exchange? (Yes, No) ");
@@ -143,6 +144,12 @@ namespace currencyRateBasedCalculatorTask
                             Console.WriteLine("Invalid answer.");
                             goto repeat;
                         }
+
+                        }
+                       
+                        else
+                            Console.WriteLine("Please enter valid amount.");
+
                     }
                 }
                 else if (command == commands[4])
