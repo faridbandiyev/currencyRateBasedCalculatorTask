@@ -10,6 +10,7 @@
             string[] currencyCode = new string[] { "USD", "RUB", "TRY" };
             decimal[] exchangeRate = new decimal[] { 1.7000M, 0.0187M, 0.0527M };
             string[] commands = { "/show-recent-currency-rates", "/find-currency-rate-by-code", "/calculate-amount-by-currency", "/exit" };
+            string[] spaceDesign = { "        ||  ", "    ||  ", "     ||  " };
 
             #endregion
 
@@ -44,7 +45,7 @@
                     while (idxCurrency < currency.Length)
                     {
                         Console.WriteLine();
-                        Console.WriteLine(currency[idxCurrency] + "||" + currencyCode[idxCurrency] + "||" + exchangeRate[idxCurrency]);
+                        Console.WriteLine(currency[idxCurrency] + spaceDesign[idxCurrency] + currencyCode[idxCurrency] + "  ||  " + exchangeRate[idxCurrency] + "  ||");
                         idxCurrency++;
                     }
 
