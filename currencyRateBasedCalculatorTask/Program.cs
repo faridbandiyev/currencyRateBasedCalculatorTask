@@ -1,4 +1,6 @@
-﻿namespace currencyRateBasedCalculatorTask
+﻿using System.Transactions;
+
+namespace currencyRateBasedCalculatorTask
 {
     internal class Program
     {
@@ -53,6 +55,7 @@
 
                 if (command == commands[1])
                 {
+                    Console.WriteLine("Enter currency code:");
                     string code = Console.ReadLine();
                     int idxCurrencyCode = 0;
                     bool found = true;
@@ -74,9 +77,43 @@
 
                 }
 
+                else if (command == commands[2])
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("Enter amount in AZN:");
+                        string userInput = Console.ReadLine();
+                        decimal moneyAmountInAzn;
 
+                        if (decimal.TryParse(userInput, out moneyAmountInAzn))
+                        {
+                            Console.WriteLine("Enter currency code:");
+                            string code = Console.ReadLine();
+                            int idxCurrencyCode = 0;
+                            bool found = true;
+
+                            while (true)
+                            {
+                                if (code == currencyCode[idxCurrencyCode])
+                                {
+                                    decimal convertedAmount = moneyAmountInAzn / exchangeRate[idxCurrencyCode];
+                                    Console.WriteLine(moneyAmountInAzn + " AZN" + " = " + convertedAmount + currencyCode[idxCurrencyCode]);
+                                    found = true;
+                                    break;
+                                }
+                                idxCurrencyCode++;
+                            }
+
+                            if (!found)
+                            {
+                                Console.WriteLine("According currency rate could not be found.");
+                            }
+                        }
+                        else
+                            Console.WriteLine("Please enter valid amount.");
+                    }
+                }
             }
-
         }
     }
 }
