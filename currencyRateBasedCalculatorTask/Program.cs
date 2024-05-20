@@ -112,6 +112,9 @@ namespace currencyRateBasedCalculatorTask
                         else
                             Console.WriteLine("Please enter valid amount.");
                     }
+                } else
+                {
+                    Console.WriteLine("Invalid command was entered.");
                 }
             }
         }
