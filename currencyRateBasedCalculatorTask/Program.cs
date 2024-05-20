@@ -24,6 +24,7 @@
                     Console.WriteLine(commands[idxCommands]);
                     idxCommands++;
                 }
+
                 Console.WriteLine();
                 Console.WriteLine("============================================================");
                 Console.WriteLine();
@@ -35,7 +36,7 @@
                     Console.WriteLine("Exiting the program, goodbye!");
                     break;
                 }
-                
+
                 else if (command == commands[0])
                 {
                     Console.WriteLine();
@@ -48,8 +49,31 @@
                         Console.WriteLine(currency[idxCurrency] + spaceDesign[idxCurrency] + currencyCode[idxCurrency] + "  ||  " + exchangeRate[idxCurrency] + "  ||");
                         idxCurrency++;
                     }
+                }
+
+                if (command == commands[1])
+                {
+                    string code = Console.ReadLine();
+                    int idxCurrencyCode = 0;
+                    bool found = true;
+
+                    while (true)
+                    {
+                        if (code == currencyCode[idxCurrencyCode])
+                        {
+                            Console.WriteLine(currency[idxCurrencyCode] + spaceDesign[idxCurrencyCode] + currencyCode[idxCurrencyCode] + "  ||  " + exchangeRate[idxCurrencyCode] + "  ||");
+                            found = true;
+                            break;
+                        }
+                        idxCurrencyCode++;
+                    }
+                    if (!found)
+                    {
+                        Console.WriteLine("According currency rate could not be found.");
+                    }
 
                 }
+
 
             }
 
