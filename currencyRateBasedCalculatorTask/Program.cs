@@ -102,7 +102,7 @@ namespace currencyRateBasedCalculatorTask
 
                         if (decimal.TryParse(userInput, out moneyAmountInAzn))
                         {
-                            currencyCodeRepeat:
+                        currencyCodeRepeat:
                             Console.WriteLine();
                             Console.Write("Enter currency code: ");
                             string code = Console.ReadLine();
@@ -125,28 +125,28 @@ namespace currencyRateBasedCalculatorTask
                             {
                                 Console.WriteLine("According currency rate could not be found.");
                                 goto currencyCodeRepeat;
-                                
+
                             }
 
                         repeat:
-                        Console.WriteLine();
-                        Console.WriteLine("----------------------------------------------------");
-                        Console.WriteLine("Do you want to request new exchange? (Yes, No) ");
-                        Console.WriteLine("----------------------------------------------------");
-                        string answer = Console.ReadLine();
+                            Console.WriteLine();
+                            Console.WriteLine("----------------------------------------------------");
+                            Console.WriteLine("Do you want to request new exchange? (Yes, No) ");
+                            Console.WriteLine("----------------------------------------------------");
+                            string answer = Console.ReadLine();
 
-                        if (answer == "Yes")
-                            continue;
-                        else if (answer == "No")
-                            break;
-                        else
-                        {
-                            Console.WriteLine("Invalid answer.");
-                            goto repeat;
+                            if (answer == "Yes")
+                                continue;
+                            else if (answer == "No")
+                                break;
+                            else
+                            {
+                                Console.WriteLine("Invalid answer.");
+                                goto repeat;
+                            }
+
                         }
 
-                        }
-                       
                         else
                             Console.WriteLine("Please enter valid amount.");
 
