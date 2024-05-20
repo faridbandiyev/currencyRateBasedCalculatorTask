@@ -16,19 +16,20 @@ namespace currencyRateBasedCalculatorTask
 
             #endregion
 
-                Console.WriteLine("Commands list:");
-                int idxCommands = 0;
+            Console.WriteLine("Commands list:");
+            Console.WriteLine();
+            int idxCommands = 0;
 
-                while (idxCommands < commands.Length)
-                {
-                    Console.WriteLine(commands[idxCommands]);
-                    idxCommands++;
-                }
+            while (idxCommands < commands.Length)
+            {
+                Console.WriteLine(commands[idxCommands]);
+                idxCommands++;
+            }
 
             while (true)
             {
                 Console.WriteLine();
-                Console.WriteLine("============================================================");
+                Console.WriteLine("-----------------------------------------------");
                 Console.WriteLine();
                 Console.WriteLine("Enter command:");
                 string command = Console.ReadLine();
@@ -43,41 +44,46 @@ namespace currencyRateBasedCalculatorTask
                 {
                     Console.WriteLine();
                     Console.WriteLine("Recent currency rates:");
+                    Console.WriteLine();
                     int idxCurrency = 0;
-                    Console.WriteLine("=========================================");
+                    Console.WriteLine("============================================");
                     Console.WriteLine();
 
                     while (idxCurrency < currency.Length)
                     {
 
-                        Console.WriteLine(" " + currency[idxCurrency] + spaceDesign[idxCurrency] + currencyCode[idxCurrency] + "  ||  " + exchangeRate[idxCurrency] + "  ||");
+                        Console.WriteLine("    " + currency[idxCurrency] + spaceDesign[idxCurrency] + currencyCode[idxCurrency] + "  ||  " + exchangeRate[idxCurrency]);
                         Console.WriteLine();
 
                         idxCurrency++;
                     }
 
-                    Console.WriteLine("=========================================");
+                    Console.WriteLine("============================================");
                 }
 
                 else if (command == commands[1])
                 {
-                    Console.WriteLine("Enter currency code:");
+                    Console.WriteLine();
+                    Console.Write("Enter currency code: ");
                     string code = Console.ReadLine();
                     int idxCurrencyCode = 0;
-                    bool found = true;
+                    bool found = false;
 
                     while (idxCurrencyCode < currencyCode.Length)
                     {
                         if (code == currencyCode[idxCurrencyCode])
                         {
-                            Console.WriteLine(currency[idxCurrencyCode] + spaceDesign[idxCurrencyCode] + currencyCode[idxCurrencyCode] + "  ||  " + exchangeRate[idxCurrencyCode] + "  ||");
-                            found = false;
+                            Console.WriteLine();
+                            Console.WriteLine(" " + currency[idxCurrencyCode] + spaceDesign[idxCurrencyCode] + currencyCode[idxCurrencyCode] + "  ||  " + exchangeRate[idxCurrencyCode]);
+                            found = true;
                             break;
                         }
                         idxCurrencyCode++;
                     }
+
                     if (!found)
                     {
+                        Console.WriteLine();
                         Console.WriteLine("According currency rate could not be found.");
                     }
 
@@ -87,13 +93,16 @@ namespace currencyRateBasedCalculatorTask
                 {
                     while (true)
                     {
-                        Console.WriteLine("Enter amount in AZN:");
+                        Console.WriteLine();
+                        Console.Write("Enter amount in AZN: ");
                         string userInput = Console.ReadLine();
                         decimal moneyAmountInAzn;
+                        
+                    
 
                         if (decimal.TryParse(userInput, out moneyAmountInAzn))
                         {
-                            Console.WriteLine("Enter currency code:");
+                            Console.Write("Enter currency code: ");
                             string code = Console.ReadLine();
                             int idxCurrencyCode = 0;
                             bool found = true;
@@ -117,6 +126,23 @@ namespace currencyRateBasedCalculatorTask
                         }
                         else
                             Console.WriteLine("Please enter valid amount.");
+
+                    repeat:
+                        Console.WriteLine();
+                        Console.WriteLine("----------------------------------------------------");
+                        Console.WriteLine("Do you want to request new exchange? (Yes, No) ");
+                        Console.WriteLine("----------------------------------------------------");
+                        string answer = Console.ReadLine();
+
+                        if (answer == "Yes")
+                            continue;
+                        else if (answer == "No")
+                            break;
+                        else
+                        {
+                            Console.WriteLine("Invalid answer.");
+                            goto repeat;
+                        }
                     }
                 }
                 else if (command == commands[4])
@@ -134,9 +160,11 @@ namespace currencyRateBasedCalculatorTask
 
                 else
                 {
+                    Console.WriteLine();
                     Console.WriteLine("Invalid command was entered.");
                     Console.WriteLine();
                     Console.WriteLine("Commands list:");
+                    Console.WriteLine();
                     idxCommands = 0;
 
                     while (idxCommands < commands.Length)
